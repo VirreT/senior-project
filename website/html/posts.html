@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant☆Rating | Explore Opinions from Around the World</title>
+    <link rel="stylesheet" href="../css/postSiteStyle.css">
+    <link rel="stylesheet" href="../css/loginBoxStyle.css">
+    <link rel="stylesheet" href="../css/posts.css">
+    <script src="../scripts/visual/loginBox.js" defer></script>
+</head>
+<body>
+    <header>
+        <div id="logo"><a href="./index.html"><h1>Restaurant ☆ Rating</h1></div></a>
+        <button id="loginButton"><strong>Log in</strong></button>
+    </header>
+    
+    <div id="loginBoxcontainer">
+        <div id="loginWindow">
+            <div id="login">
+                <h1><strong>Log in</strong></h1>
+                <input type="text" name="username" placeholder="Username" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" required>
+                <br>
+                <a href="#" id="signupLink">Sign Up</a>
+                <br>
+                <button id="loginSend">Log in</button>
+            </div>
+        </div>
+        <div id="signupWindow">
+            <div id="signup">
+                <h1><strong>Sign up</strong></h1>
+                <input type="text" name="username" placeholder="Username" id="signupUsername" required>
+                <br>
+                <input type="email" name="email" placeholder="Email Address" id="signupEmail" required>
+                <br>
+                <input type="email" name="emailConfirm" placeholder="Confirm Email Address" id="signupEmailConfirm"  required>
+                <br>
+                <input type="password" name="password" placeholder="Password" id="signupPassword" required>
+                <br>
+                <a href="#" id="loginLink">Log In</a>
+                <br>
+                <button id="signupSend">Sign up</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="postsContainer">
+            <div id="topPostContainer">
+                <h1>Top Posts Today</h1>
+                <div id="topPosts">Top Posts</div>
+            </div>
+        </div>
+            <div class="postContainer">
+                <div class="post">
+                    <div id="location">
+                        <button id="locationButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="64" height="64">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+                            </svg>
+                            <div id="locationName">Location</div>
+                        </button>
+                    </div>
+                    <div id="mainContent">
+                        <div id="mainInfo">
+                            <h1 id="postTitle">Title</h1>
+                            <div id="poster">Username</div>
+                        </div>
+                        <div id="postDetails">
+                            <div id="rating">☆☆☆</div>
+                            <p id="bio">Bio Example</p>
+                        </div>
+                        <div id="postActions">
+                            <div id="votes">0</div>
+                            <button id="voteUp" class="voteBtn">🡅</button>
+                            <button id="voteDown" class="voteBtn">🡇</button>
+                            <button id="commentButton">🗨️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+</body>
+</html>

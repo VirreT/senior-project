@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap');
+
+#postsContainer{
+    display: flex;
+}
+
+.post {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px; 
+    background-color: #1d3042; 
+    border: 2px solid #d2aa6d; 
+    border-radius: 10px;
+    margin: 15px auto; 
+    color: #d2a96d; 
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+}
+
+#location {
+    margin-right: 15px;
+}
+
+#locationButton {
+    width: 75px; 
+    height: 75px;
+    border-radius: 50%;
+    background-color: #d2aa6d; 
+    color: #1d3042; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#locationButton:hover {
+    background-color: #d2a96d; 
+}
+
+#locationName {
+    display: none; 
+}
+
+#mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#mainInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px; 
+}
+
+#postTitle {
+    font-size: 20px; 
+    font-weight: bold;
+    color: #d2a96d; 
+}
+
+#poster {
+    font-size: 14px; 
+    color: #d2a96d; 
+}
+
+#postDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px; 
+    font-size: 16px; 
+    color: #d7dadc;
+}
+
+#rating {
+    margin-right: 15px; 
+}
+
+#postActions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px; 
+}
+
+#votes {
+    font-size: 14px;
+    margin-right: 10px;
+    color: #d7dadc;
+}
+
+.voteBtn {
+    background: none;
+    border: none;
+    color: white; 
+    font-size: 18px; 
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.voteBtn:hover {
+    color: #ffcc80; 
+}
+
+#commentButton {
+    background: none;
+    border: none;
+    color: #d2a96d; 
+    font-size: 18px; 
+    cursor: pointer;
+    margin-left: 10px;
+}

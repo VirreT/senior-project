@@ -1,0 +1,120 @@
+
+#loginBoxcontainer{
+    display: flex;
+    justify-content: center;
+}
+
+#loginButton{
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+    background-color: #d2a96d;
+    color: #1d3042;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #d2aa6d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#loginButton:hover{
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #1d3042;
+    color: #d2a96d;
+    cursor: pointer;
+}
+
+#loginWindow{
+    text-align: center;
+    width: 330px;
+    padding: 20px;
+    padding-bottom: 50px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 2px solid #d2aa6d;
+    border-radius: 10px;
+    background-color: #1d3042;
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #d2aa6d;
+    background-color: #1d3042;
+    color: #d2a96d;
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    outline: none;
+}
+input::placeholder{
+    color: #a88a5e;
+    font-weight: bold;
+}
+
+#loginSend{
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+    background-color: #d2a96d;
+    color: #1d3042;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid #d2aa6d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#loginSend:hover{
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #1d3042;
+    color: #d2a96d;
+    cursor: pointer;
+}
+
+#signupWindow{
+    text-align: center;
+    width: 330px;
+    padding: 20px;
+    padding-bottom: 50px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 2px solid #d2aa6d;
+    border-radius: 10px;
+    background-color: #1d3042;
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+
+#signupSend{
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+    background-color: #d2a96d;
+    color: #1d3042;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid #d2aa6d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#signupSend:hover{
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #1d3042;
+    color: #d2a96d;
+    cursor: pointer;
+}
+
+a{
+    color: #d2a96d;
+}

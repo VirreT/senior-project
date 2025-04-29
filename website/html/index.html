@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant☆Rating | Explore Opinions from Around the World</title>
+    <link rel="stylesheet" href="../css/indexStyle.css">
+    <link rel="stylesheet" href="../css/loginBoxStyle.css">
+    <script src="../scripts/visual/loginBox.js" defer></script>
+    <script src="../scripts/visual/backgroundAnim.js" defer></script>
+    <script src="../scripts/event/signup.js"></script>
+</head>
+<body>
+    <header>
+        <div id="logo"><a href="./index.html"><h1>Restaurant ☆ Rating</h1></div></a>
+        <button id="loginButton"><strong>Log in</strong></button>
+    </header>
+
+    <div id="loginBoxcontainer">
+        <div id="loginWindow">
+            <div id="login">
+                <h1><strong>Log in</strong></h1>
+                <input type="text" name="username" placeholder="Username" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" required>
+                <br>
+                <a href="#" id="signupLink">Sign Up</a>
+                <br>
+                <button id="loginSend">Log in</button>
+            </div>
+        </div>
+        <div id="signupWindow">
+            <form id="signup">
+                <h1><strong>Sign up</strong></h1>
+                <input type="text" name="username" placeholder="Username" id="signupUsername" required>
+                <br>
+                <input type="email" name="email" placeholder="Email Address" id="signupEmail" required>
+                <br>
+                <input type="email" name="emailConfirm" placeholder="Confirm Email Address" id="signupEmailConfirm" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" id="signupPassword" required>
+                <br>
+                <a href="#" id="loginLink">Log In</a>
+                <br>
+                <button type="button" id="signupSend">Sign up</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <main>
+        <div id="backgroundContainer">
+            <img id="backgroundImg" src="../assets/backgroundImages/background1.png" alt="Background Image">
+            <div id="rating"></div>
+        </div>
+        <div id="containers">
+            <div id="aboutContainer">
+                <div id="aboutSection">
+                    <h2>Explore Opinions from Around the World</h2>
+                    <img src="../assets/images/mainImage1.png" alt="Explore Opinions from Around the World">
+                </div>
+                <p id="aboutDesc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p>Explore Opinions Around the World:</p>
+                <button id="openPosts">
+                    <strong>See Posts</strong>
+                </button>
+            </div>
+        </div>
+    </main>
+    <footer>Restaurant Rating &copy;</footer>
+    <script src="../scripts/link/link.js" defer></script>
+</body>
+</html>

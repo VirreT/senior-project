@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap');
+
+body, html {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    font-family: "DM Serif Text", Georgia, 'Times New Roman', Times, serif;
+}
+
+#logo a{
+    text-decoration: none;
+}
+
+h2{
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+}
+
+body{
+    background-color: #1d3042;
+    color: #d2a96d;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 100px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 60%;
+    margin: 20px auto;
+    background-color: #1a1a1b;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
