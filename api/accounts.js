@@ -1,5 +1,5 @@
 // api/accounts.js
-// (see scripts/requirements/signupreq.js)
+// (see website/scripts/requirements/signupreq.js)
 //import modules
 const express = require('express');
 const router = express.Router();
