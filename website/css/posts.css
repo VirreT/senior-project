@@ -19,8 +19,17 @@
     font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
 }
 
+.post:hover {
+    cursor: pointer;
+    background-color: #263f57; 
+}
+
 #location {
     margin-right: 15px;
+}
+
+#postsContainer{
+    width: 1000px
 }
 
 #locationButton {

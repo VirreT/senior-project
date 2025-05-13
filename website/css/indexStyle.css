@@ -59,6 +59,11 @@ img{
     width: 80%;
 }
 
+img.fade {
+    transition: opacity 1s ease;
+    opacity: 1;
+}
+
 #aboutContainer{
     display: flex;
     flex-direction: column;
