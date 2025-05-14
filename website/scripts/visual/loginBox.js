@@ -42,6 +42,56 @@ document.addEventListener('DOMContentLoaded', () => {
             main.style.filter = 'blur(0px)';
         }
     });
+
+    // LOGIN API connection
+    document.getElementById('loginSend').addEventListener('click', async (event) => {
+        event.preventDefault();
+        const username = document.querySelector('#login input[name="username"]').value;
+        const password = document.querySelector('#login input[name="password"]').value;
+        try {
+            const response = await fetch('/api/accounts/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                alert('Login successful!');
+                // Optionally reload or redirect
+                window.location.reload();
+            } else {
+                alert(data.message || 'Login failed');
+            }
+        } catch (err) {
+            alert('Login failed: ' + err.message);
+        }
+    });
+
+    // SIGNUP API connection
+    document.getElementById('signupSend').addEventListener('click', async (event) => {
+        event.preventDefault();
+        const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const emailConfirm = document.getElementById('signupEmailConfirm').value;
+        const password = document.getElementById('signupPassword').value;
+        try {
+            const response = await fetch('/api/accounts/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, emailConfirm, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                alert('Registration successful! You can now log in.');
+                document.getElementById('signupWindow').style.display = 'none';
+                document.getElementById('loginWindow').style.display = 'flex';
+            } else {
+                alert(data.message || 'Registration failed');
+            }
+        } catch (err) {
+            alert('Registration failed: ' + err.message);
+        }
+    });
 });
 
 //change between login and signup
