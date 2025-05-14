@@ -85,7 +85,7 @@ document.getElementById('signupSend').addEventListener('click', async (event) =>
         const data = await response.json();
         if (response.ok) {
             alert('Registration successful!');
-            window.location.href = './profile.html';
+            window.location.href = '/html/profile.html';
         } else {
             alert(data.message || 'Registration failed');
         }
