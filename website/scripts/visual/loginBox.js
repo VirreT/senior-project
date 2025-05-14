@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
     const loginButton = document.getElementById('loginButton');
     const signupButton = document.getElementById('signupButton');
     const loginWindow = document.getElementById('loginWindow');
@@ -9,17 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const main = document.getElementsByTagName('main')[0];
     const body = document.body;
 
-    //hide login or signup
+    // hide windows when clicking outside
     body.addEventListener('click', (event) => {
-        if (event.target !== loginButton && event.target !== loginWindow && !loginWindow.contains(event.target) &&
-            event.target !== signupButton && event.target !== signupWindow && !signupWindow.contains(event.target)) {
+        if (
+            event.target !== loginButton && event.target !== loginWindow && !loginWindow.contains(event.target) &&
+            event.target !== signupButton && event.target !== signupWindow && !signupWindow.contains(event.target)
+        ) {
             loginWindow.style.display = 'none';
             signupWindow.style.display = 'none';
-            main.style.filter = 'blur(0px)';                
+            main.style.filter = 'blur(0px)';
         }
     });
 
-    //login window visibility 
+    // login window toggle
     loginButton.addEventListener('click', (event) => {
         event.stopPropagation();
         if (loginWindow.style.display === 'none' || loginWindow.style.display === '') {
@@ -31,19 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //toggleable signup window
-    signupButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        if (signupWindow.style.display === 'none' || signupWindow.style.display === '') {
-            signupWindow.style.display = 'flex';
-            main.style.filter = 'blur(3px)';
-        } else {
-            signupWindow.style.display = 'none';
-            main.style.filter = 'blur(0px)';
-        }
-    });
+    //signup window toggle
+    if (signupButton) {
+        signupButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (signupWindow.style.display === 'none' || signupWindow.style.display === '') {
+                signupWindow.style.display = 'flex';
+                main.style.filter = 'blur(3px)';
+            } else {
+                signupWindow.style.display = 'none';
+                main.style.filter = 'blur(0px)';
+            }
+        });
+    }
 
-    // LOGIN API connection
+    // LOGIN API CONNECTION
     document.getElementById('loginSend').addEventListener('click', async (event) => {
         event.preventDefault();
         const username = document.querySelector('#login input[name="username"]').value;
@@ -57,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (response.ok) {
                 alert('Login successful!');
-                // Optionally reload or redirect
                 window.location.reload();
             } else {
                 alert(data.message || 'Login failed');
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // SIGNUP API connection
+    // SIGNUP API CONNECTION
     document.getElementById('signupSend').addEventListener('click', async (event) => {
         event.preventDefault();
         const username = document.getElementById('signupUsername').value;
@@ -83,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (response.ok) {
                 alert('Registration successful! You can now log in.');
-                document.getElementById('signupWindow').style.display = 'none';
-                document.getElementById('loginWindow').style.display = 'flex';
+                signupWindow.style.display = 'none';
+                loginWindow.style.display = 'flex';
             } else {
                 alert(data.message || 'Registration failed');
             }
@@ -92,19 +94,18 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Registration failed: ' + err.message);
         }
     });
-});
 
-//change between login and signup
-loginWindow.addEventListener('click', (event) => {
-    if (event.target == signupLink) {
-        loginWindow.style.display = 'none';
-        signupWindow.style.display = 'flex';                
-    }
-});
+    loginWindow.addEventListener('click', (event) => {
+        if (event.target === signupLink) {
+            loginWindow.style.display = 'none';
+            signupWindow.style.display = 'flex';
+        }
+    });
 
-signupWindow.addEventListener('click', (event) => {
-    if (event.target == loginLink) {
-        signupWindow.style.display = 'none';
-        loginWindow.style.display = 'flex';                
-    }
+    signupWindow.addEventListener('click', (event) => {
+        if (event.target === loginLink) {
+            signupWindow.style.display = 'none';
+            loginWindow.style.display = 'flex';
+        }
+    });
 });
