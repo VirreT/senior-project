@@ -6,7 +6,6 @@ const path = require("path");
 const accountRoutes = require("./api/accounts");
 const postRoutes = require("./api/posts");
 const commentRoutes = require("./api/comments");
-const expressValidator = require("express-validator");
 
 //express
 const app = express();

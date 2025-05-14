@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     const openPosts = document.getElementById('openPosts');
     const loginSend = document.getElementById('loginSend');
     const signUpSend = document.getElementById('signupSend');
@@ -20,3 +20,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+*/
