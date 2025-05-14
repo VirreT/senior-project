@@ -70,30 +70,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // SIGNUP API CONNECTION
-    document.getElementById('signupSend').addEventListener('click', async (event) => {
-        event.preventDefault();
-        const username = document.getElementById('signupUsername').value;
-        const email = document.getElementById('signupEmail').value;
-        const emailConfirm = document.getElementById('signupEmailConfirm').value;
-        const password = document.getElementById('signupPassword').value;
-        try {
-            const response = await fetch('/api/accounts/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, emailConfirm, password })
-            });
-            const data = await response.json();
-            if (response.ok) {
-                alert('Registration successful! You can now log in.');
-                signupWindow.style.display = 'none';
-                loginWindow.style.display = 'flex';
-            } else {
-                alert(data.message || 'Registration failed');
-            }
-        } catch (err) {
-            alert('Registration failed: ' + err.message);
+document.getElementById('signupSend').addEventListener('click', async (event) => {
+    event.preventDefault();
+    const username = document.getElementById('signupUsername').value;
+    const email = document.getElementById('signupEmail').value;
+    const emailConfirm = document.getElementById('signupEmailConfirm').value;
+    const password = document.getElementById('signupPassword').value;
+    try {
+        const response = await fetch('/api/accounts/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, emailConfirm, password })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            alert('Registration successful!');
+            window.location.href = './profile.html';
+        } else {
+            alert(data.message || 'Registration failed');
         }
-    });
+    } catch (err) {
+        alert('Registration failed: ' + err.message);
+    }
+});
+
 
     loginWindow.addEventListener('click', (event) => {
         if (event.target === signupLink) {
