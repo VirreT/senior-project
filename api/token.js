@@ -85,7 +85,7 @@ async function autoLogin(req, res) {
         const newAccessToken = jwt.sign(
             { username: payload.username },
             JWT_TOKEN_SECRET,
-            { expiresIn:_SECRET `${JWT_EXPIRATION}s` }
+            { expiresIn: `${JWT_EXPIRATION}s` }
         );
 
         res.json({ access_token: newAccessToken });

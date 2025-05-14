@@ -46,6 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Function to check if the user is logged in using token in cookies/localStorage
+    const checkUserLoginStatus = () => {
+        const accessToken = localStorage.getItem('access_token') || document.cookie.split('; ').find(row => row.startsWith('access_token=')).split('=')[1];
+        return accessToken ? true : false;
+    };
+
+    // Modify UI based on login status
+    if (checkUserLoginStatus()) {
+        // User is logged in
+        loginButton.textContent = "Go to Profile";
+        profileIcon.style.display = 'block';
+        loginButton.onclick = () => {
+            window.location.href = './profile.html';
+        };
+    } else {
+        // User is not logged in
+        loginButton.textContent = "Log in";
+        profileIcon.style.display = 'none';
+        loginButton.onclick = () => {
+            const loginWindow = document.getElementById('loginWindow');
+            const main = document.getElementsByTagName('main')[0];
+            if (loginWindow.style.display === 'none' || loginWindow.style.display === '') {
+                loginWindow.style.display = 'flex';
+                main.style.filter = 'blur(3px)';
+            } else {
+                loginWindow.style.display = 'none';
+                main.style.filter = 'blur(0px)';
+            }
+        };
+    }
+
     // LOGIN API CONNECTION
     document.getElementById('loginSend').addEventListener('click', async (event) => {
         event.preventDefault();

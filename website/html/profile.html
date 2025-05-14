@@ -16,6 +16,36 @@
   </svg></button>
         <script src="../scripts/event/loginBox.js" defer></script>
     </header>
+    <div id="loginBoxcontainer">
+        <div id="loginWindow">
+            <div id="login">
+                <h1><strong>Log in</strong></h1>
+                <input type="text" name="username" placeholder="Username" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" required>
+                <br>
+                <a href="#" id="signupLink">Sign Up</a>
+                <br>
+                <button id="loginSend">Log in</button>
+            </div>
+        </div>
+        <div id="signupWindow">
+            <form id="signup">
+                <h1><strong>Sign up</strong></h1>
+                <input type="text" name="username" placeholder="Username" id="signupUsername" required>
+                <br>
+                <input type="email" name="email" placeholder="Email Address" id="signupEmail" required>
+                <br>
+                <input type="email" name="emailConfirm" placeholder="Confirm Email Address" id="signupEmailConfirm" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" id="signupPassword" required>
+                <br>
+                <a href="#" id="loginLink">Log In</a>
+                <br>
+                <button type="button" id="signupSend">Sign up</button>
+            </form>
+        </div>
+    </div>
     <main>
         <div id="profileContainer">
             <div id="profileHeader">
