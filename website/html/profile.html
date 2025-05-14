@@ -8,27 +8,39 @@
 </head>
 <body>
     <header>
-        <div id="logo"><a href="./index.html"><h1>Restaurant ☆ Rating</h1></div></a>
-        <button id="loginButton"><strong>Log in</strong></button>
+        <div id="logo"><a href="./index.html"><h1>Restaurant ☆ Rating</h1></a></div>
+        <button id="loginButton"><strong>Log in</strong><svg id="profileIcon" width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#d2a96d">
+    <circle cx="50" cy="50" r="48" stroke="#d2a96d" stroke-width="4" fill="none" />
+    <circle cx="50" cy="35" r="15" fill="#d2a96d" />
+    <path d="M25 75c0-13.8 11.2-25 25-25s25 11.2 25 25" fill="#d2a96d" />
+  </svg></button>
         <script src="../scripts/event/loginBox.js" defer></script>
     </header>
+    <main>
         <div id="profileContainer">
             <div id="profileHeader">
-                <h1>Username</h1>
-                <div id="profileInformation">
-                    <h2>Email@mail.com</h2>
-                    <h2>Password</h2> <button id="passowrdShow">Show Password</button>
+                <div id="profileUserInfo">
+                    <h1 id="profileUsername">Welcome, Username</h1>
+                    <h2 id="profileEmail">Email@mail.com</h2>
+                </div>
+                <div id="profileActions">
                     <button id="editProfile">Edit Profile Info</button>
                 </div>
             </div>
+            <div id="profileDetails">
+                <div class="profileDetailRow">
+                    <span class="profileDetailLabel">Password:</span>
+                    <span class="profileDetailValue">********</span>
+                    <button id="passwordShow">Show Password</button>
+                </div>
+            </div>
         </div>
-
         <div id="postsContainer">
             <div id="postsHeader">
-                <h1>Earlier Posts: Posts</h1>
-                <div id="posts">Posts</div>
+                <h1>Earlier Posts</h1>
             </div>
-
+            <div id="posts">Posts</div>
         </div>
+    </main>
 </body>
 </html>

@@ -40,9 +40,6 @@ app.use("/api/accounts", accountRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 
-app.get('/profile.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'website/html/profile.html'));
-});
 
 // server start
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));

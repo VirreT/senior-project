@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap');
+
+body, html {
+    min-height: 100%;
+    background-color: #1d3042;
+    color: #d2a96d;
+    font-family: 'Markazi Text', Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 100px;
+}
+
+#logo a {
+    text-decoration: none;
+}
+
+h1 {
+    font-family: "DM Serif Text", Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+}
+
+h2 {
+    font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin: 0 auto;
+}
+
+#profileContainer {
+    background-color: #fff;
+    color: #1d3042;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    padding: 32px 40px 24px 40px;
+    margin: 32px 0 24px 0;
+    width: 80vw;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profileHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+#profileUserInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#profileUsername {
+    font-size: 2.5em;
+    color: #d2a96d;
+    letter-spacing: 1px;
+}
+
+#profileEmail {
+    font-size: 1.2em;
+    color: #1d3042;
+    opacity: 0.8;
+}
+
+#profileActions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#editProfile {
+    background-color: #d2a96d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+#editProfile:hover {
+    background-color: #fff;
+    color: #d2a96d;
+    border: 2px solid #d2a96d;
+}
+
+#profileDetails {
+    width: 100%;
+    margin-top: 10px;
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profileDetailRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profileDetailLabel {
+    font-weight: bold;
+    color: #1d3042;
+    min-width: 90px;
+}
+
+.profileDetailValue {
+    font-family: monospace;
+    color: #d2a96d;
+    font-size: 1.1em;
+}
+
+#passwordShow {
+    background: none;
+    border: 1px solid #d2a96d;
+    color: #d2a96d;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 10px;
+    transition: background 0.2s, color 0.2s;
+}
+#passwordShow:hover {
+    background: #d2a96d;
+    color: #fff;
+}
+
+#postsContainer {
+    width: 80vw;
+    max-width: 900px;
+    background: #273746;
+    border-radius: 20px;
+    margin: 0 auto 40px auto;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.13);
+    padding: 24px 32px 32px 32px;
+}
+
+#postsHeader h1 {
+    color: #d2a96d;
+    font-size: 2em;
+    margin-bottom: 18px;
+}
+
+#posts {
+    color: #fff;
+    font-size: 1.1em;
+    min-height: 40px;
+}
+
+@media (max-width: 900px) {
+    #profileContainer, #postsContainer {
+        width: 95vw;
+        padding: 16px 6vw;
+    }
+    main {
+        width: 100vw;
+    }
+}
