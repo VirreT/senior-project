@@ -1,9 +1,9 @@
 //require modules
 require("dotenv").config();
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
 // get Database connection details from .env
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -14,6 +14,7 @@ const db = mysql.createConnection({
     connectTimeout: 30000
 });
 
+/*
 // connect the database
 db.connect(err => {
     if (err) {
@@ -22,6 +23,6 @@ db.connect(err => {
         console.log("MySQL connected!");
     }
 });
-
+*/
 //export the db connection
 module.exports = db;
