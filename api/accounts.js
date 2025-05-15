@@ -91,8 +91,6 @@ router.post('/register', async (req, res) => {
             [username, hashedPassword, email]
         );
 
-        console.log(`DB result: ${result}`);
-
         return res.status(201).json({ message: 'User registered successfully' });
 
     } catch (err) {
