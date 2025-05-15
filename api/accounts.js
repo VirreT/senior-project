@@ -102,32 +102,52 @@ router.post('/register', async (req, res) => {
 });
 
 // LOGIN user
+const { generateTokens } = require('./token');
+
 router.post('/login', async (req, res) => {
-    try {
-        let { username, password } = req.body;
-        username = username.trim().toLowerCase();
+  try {
+    let { username, password } = req.body;
+    username = username.trim().toLowerCase();
 
-        const [rows] = await db.execute(
-            'SELECT passwd FROM users WHERE username = ?',
-            [username]
-        );
+    const [results, fields] = await db.execute(
+      'SELECT passwd FROM users WHERE username = ?',
+      [username]
+    );
 
-        if (rows.length === 0) {
-            return res.status(400).json({ message: 'Invalid username or password' });
-        }
-
-        const validPassword = await argon2.verify(rows[0].passwd, password);
-
-        if (!validPassword) {
-            return res.status(400).json({ message: 'Invalid username or password' });
-        }
-
-        return res.status(200).json({ message: 'Login successful' });
-
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ message: 'Login failed', error: err.message });
+    if (results.length === 0) {
+      return res.status(400).json({ message: 'Invalid username or password' });
     }
+
+    const validPassword = await argon2.verify(results[0].passwd.toString(), password);
+
+    if (!validPassword) {
+      return res.status(400).json({ message: 'Invalid username or password' });
+    }
+
+    
+    const { accessToken, refreshToken } = generateTokens({ username });
+
+    
+    res.cookie('refresh_token', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: 'strict',
+      maxAge: 12 * 60 * 60 * 1000, 
+    });
+
+    
+    return res.status(200).json({ message: 'Login successful', accessToken });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Login failed', error: err.message });
+  }
 });
+
+const { autoLogin } = require('./token');
+
+router.get('/auto-login', autoLogin);
+
+
 
 module.exports = router;
