@@ -11,7 +11,7 @@ function isValidEmail(email) {
     if (!email || !email.includes('@') || email.startsWith('@') || email.endsWith('@')) {
         return false;
     }
-    if (email.indexOf('@') > email.indexOf('.')) {
+    if (email.indexOf('@') > email.lastIndexOf('.')) {
         return false;
     }
     if (!email.includes('.')) {
@@ -62,8 +62,10 @@ function isValidUsername(username) {
 // REGISTER new user
 router.post('/register', async (req, res) => {
     try {
-        const { username, email, emailConfirm, password } = req.body;
-
+        let { username, email, emailConfirm, password } = req.body;
+        username = username.trim().toLowerCase();
+        email = email.trim().toLowerCase();
+        emailConfirm = emailConfirm.trim().toLowerCase();
         // Validate email
         if (email !== emailConfirm) {
             return res.status(400).json({ message: 'Emails do not match' });
@@ -102,7 +104,8 @@ router.post('/register', async (req, res) => {
 // LOGIN user
 router.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        let { username, password } = req.body;
+        username = username.trim().toLowerCase();
 
         const [rows] = await db.execute(
             'SELECT passwd FROM users WHERE username = ?',
