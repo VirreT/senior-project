@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('access_token');
         if (!token) {
             window.location.href = '/html/index.html';
             return;
