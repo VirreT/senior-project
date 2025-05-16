@@ -49,13 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // LOGIN API CONNECTION
     document.getElementById('loginSend').addEventListener('click', async (event) => {
         event.preventDefault();
-        const username = document.querySelector('#login input[name="username"]').value;
+        const userInput = document.querySelector('#login input[name="username"]').value;
         const password = document.querySelector('#login input[name="password"]').value;
+        let loginPayload = { password };
+        //if input contains @ treat as email
+        if (userInput.includes('@')) {
+            loginPayload.email = userInput;
+        } else {
+            loginPayload.username = userInput;
+        }
         try {
             const response = await fetch('/api/accounts/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify(loginPayload)
             });
             const data = await response.json();
             if (response.ok) {

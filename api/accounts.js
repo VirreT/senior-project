@@ -63,7 +63,7 @@ function isValidUsername(username) {
 router.post('/register', async (req, res) => {
     try {
         let { username, email, emailConfirm, password } = req.body;
-        username = username.trim();
+        username = username.trim()
         email = email.trim().toLowerCase();
         emailConfirm = emailConfirm.trim().toLowerCase();
         // Validate email
