@@ -41,4 +41,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     }
+
+    const deleteProfileButton = document.getElementById('deleteProfileButton');
+    if (deleteProfileButton) {
+        deleteProfileButton.addEventListener('click', async () => {
+            if (!confirm('Are you sure you want to delete your profile? This action cannot be undone.')) return;
+            try {
+                const token = localStorage.getItem('access_token');
+                const response = await fetch('/api/profile', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to delete profile');
+                localStorage.removeItem('access_token');
+                alert('Your profile has been deleted.');
+                window.location.href = '/html/index.html';
+            } catch (err) {
+                console.error('Profile deletion failed:', err);
+                alert('Failed to delete profile. Please try again.');
+            }
+        });
+    }
 });

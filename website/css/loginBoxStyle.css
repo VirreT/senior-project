@@ -6,8 +6,8 @@
 
 #loginButton{
     font-family: "Markazi Text", Georgia, 'Times New Roman', Times, serif;
-    background-color: #d2a96d;
-    color: #1d3042;
+    background-color: #1d3042;
+    color: #d2a96d;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -17,8 +17,10 @@
 
 #loginButton:hover{
     transition: background-color 0.3s ease, color 0.3s ease;
-    background-color: #1d3042;
-    color: #d2a96d;
+    background-color: #d2a96d;
+    color: #1d3042;
+    stroke: #1d3042;
+    fill: #1d3042;
     cursor: pointer;
 }
 

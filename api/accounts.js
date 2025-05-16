@@ -134,7 +134,6 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid username/email or password' });
     }
 
-    // Generate JWT tokens and return access_token as expected by frontend
     const { accessToken, refreshToken } = generateTokens({ username: results[0].username });
     res.cookie('refresh_token', refreshToken, { httpOnly: true, sameSite: 'lax', path: '/' });
     return res.status(200).json({ message: 'Login successful', access_token: accessToken, username: results[0].username });

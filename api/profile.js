@@ -20,4 +20,20 @@ router.get('/profile', authenticateToken, async (req, res) => {
     }
 });
 
+router.delete('/profile', authenticateToken, async (req, res) => {
+    try {
+        const username = req.user.username;
+        //delete user
+        const [result] = await db.execute('DELETE FROM users WHERE username = ?', [username]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.clearCookie('refresh_token', { httpOnly: true, sameSite: 'lax', path: '/' });
+        return res.status(200).json({ message: 'Profile deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Failed to delete profile' });
+    }
+});
+
 module.exports = router;

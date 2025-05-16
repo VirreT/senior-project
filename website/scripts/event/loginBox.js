@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const signupWindow = document.getElementById('signupWindow'); 
     const loginLink = document.getElementById('loginLink'); 
     const signupLink = document.getElementById('signupLink'); 
+    const loginText = document.getElementById('loginText');
+    const profileIcon = document.getElementById('profileIcon');
     const main = document.getElementsByTagName('main')[0];
     const body = document.body;
 
@@ -23,12 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // login window toggle
     loginButton.addEventListener('click', (event) => {
         event.stopPropagation();
-        if (loginWindow.style.display === 'none' || loginWindow.style.display === '') {
-            loginWindow.style.display = 'flex';
-            main.style.filter = 'blur(3px)';
+        if (localStorage.getItem('access_token')) {
+            if (loginText) loginText.style.display = 'none';
+            if (profileIcon) profileIcon.style.display = 'block';
+            loginText.display = 'none';
+            window.location.href = '/html/profile.html';
         } else {
-            loginWindow.style.display = 'none';
-            main.style.filter = 'blur(0px)';
+            if (profileIcon) profileIcon.style.display = 'none';
+            if (loginText) loginText.style.display = 'block';
+            if (loginWindow.style.display === 'none' || loginWindow.style.display === '') {
+                loginWindow.style.display = 'flex';
+                main.style.filter = 'blur(3px)';
+            } else {
+                loginWindow.style.display = 'none';
+                main.style.filter = 'blur(0px)';
+            }
         }
     });
 
@@ -123,4 +134,13 @@ document.getElementById('signupSend').addEventListener('click', async (event) =>
             loginWindow.style.display = 'flex';
         }
     });
+
+    // On page load, update login button UI based on login state
+    if (localStorage.getItem('access_token')) {
+        if (loginText) loginText.style.display = 'none';
+        if (profileIcon) profileIcon.style.display = 'block';
+    } else {
+        if (profileIcon) profileIcon.style.display = 'none';
+        if (loginText) loginText.style.display = 'block';
+    }
 });
