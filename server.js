@@ -37,8 +37,8 @@ app.get("/", (req, res) => {
 
 // API routes
 app.use("/api/accounts", accountRoutes);
-app.use("/api/posts", postRoutes);
-app.use("/api/comments", commentRoutes);
+//app.use("/api/posts", postRoutes);
+//app.use("/api/comments", commentRoutes);
 
 
 // server start

@@ -1,4 +1,4 @@
-//import modules
+/*//import modules
 const express = require("express");
 const { body } = require("express-validator");
 const db = require("./sqlConnector");
@@ -62,3 +62,4 @@ router.get("/:postId", verifyToken, (req, res) => {
 });
 
 module.exports = router;
+*/

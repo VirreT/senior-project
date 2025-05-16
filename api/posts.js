@@ -1,4 +1,4 @@
-// port req (see website/scripts/requirements/postreq.js)
+/*// port req (see website/scripts/requirements/postreq.js)
 const express = require("express");
 const { body } = require("express-validator");
 const db = require("./sqlConnector");
@@ -101,3 +101,4 @@ router.get("/", verifyToken, (req, res) => {
 });
 
 module.exports = router;
+*/
