@@ -66,7 +66,7 @@ router.post('/register', async (req, res) => {
         username = username.trim()
         email = email.trim().toLowerCase();
         emailConfirm = emailConfirm.trim().toLowerCase();
-        // Validate email
+        // validate email
         if (email !== emailConfirm) {
             return res.status(400).json({ message: 'Emails do not match' });
         }
@@ -74,12 +74,12 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ message: 'Invalid email format' });
         }
 
-        // Validate password
+        // validate password
         if (!isValidPassword(password)) {
             return res.status(400).json({ message: 'Password does not meet requirements' });
         }
 
-        // Validate username
+        // validate username
         if (!isValidUsername(username)) {
             return res.status(400).json({ message: 'Username does not meet requirements' });
         }
@@ -104,39 +104,36 @@ const { generateTokens } = require('./token');
 
 router.post('/login', async (req, res) => {
   try {
-    let { username, password } = req.body;
-    username = username.trim().toLowerCase();
+    let { username, email, password } = req.body;
+    let userField, userValue;
+    if (email) {
+      userField = 'email';
+      userValue = email.trim().toLowerCase();
+    } else if (username) {
+      userField = 'username';
+      userValue = username.trim().toLowerCase();
+    } else {
+      return res.status(400).json({ message: 'Username or email required' });
+    }
 
-    const [results, fields] = await db.execute(
-      'SELECT passwd FROM users WHERE username = ?',
-      [username]
+    const [results] = await db.execute(
+      `SELECT username, passwd FROM users WHERE ${userField} = ?`,
+      [userValue]
     );
 
     if (results.length === 0) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'Invalid username/email or password' });
     }
 
     const validPassword = await argon2.verify(results[0].passwd.toString(), password);
 
     if (!validPassword) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'Invalid username/email or password' });
     }
 
-    
-    const { accessToken, refreshToken } = generateTokens({ username });
-
-    
-    res.cookie('refresh_token', refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', 
-      sameSite: 'strict',
-      maxAge: 12 * 60 * 60 * 1000, 
-    });
-
-    
-    return res.status(200).json({ message: 'Login successful', accessToken });
-    window.location.href = '/../html/profile.html';
-
+    // Optionally: set a session or cookie here for persistent login
+    // For now, just return success
+    return res.status(200).json({ message: 'Login successful', username: results[0].username });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Login failed', error: err.message });
