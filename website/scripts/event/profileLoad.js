@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const user = await response.json();
         document.getElementById('profileUsername').textContent = `Welcome, ${user.username}`;
         document.getElementById('profileEmail').textContent = user.email;
-        document.getElementById('profileCreation').textContent = `You have been a user since ${user.created_at}`;
+        const createdDate = new Date(user.created_at).toISOString().split('T')[0];
+        document.getElementById('profileCreation').textContent = `You have been a user since ${createdDate}`;
     } catch (err) {
         console.error(err);
         window.location.href = '/html/index.html';

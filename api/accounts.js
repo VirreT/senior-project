@@ -91,7 +91,10 @@ router.post('/register', async (req, res) => {
             [username, hashedPassword, email]
         );
 
-        return res.status(201).json({ message: 'User registered successfully' });
+        // After successful registration, log the user in automatically
+        const { accessToken, refreshToken } = require('./token').generateTokens({ username });
+        res.cookie('refresh_token', refreshToken, { httpOnly: true, sameSite: 'lax', path: '/' });
+        return res.status(201).json({ message: 'User registered successfully', access_token: accessToken, username });
 
     } catch (err) {
         console.error(err);
@@ -131,9 +134,10 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid username/email or password' });
     }
 
-    // Optionally: set a session or cookie here for persistent login
-    // For now, just return success
-    return res.status(200).json({ message: 'Login successful', username: results[0].username });
+    // Generate JWT tokens and return access_token as expected by frontend
+    const { accessToken, refreshToken } = generateTokens({ username: results[0].username });
+    res.cookie('refresh_token', refreshToken, { httpOnly: true, sameSite: 'lax', path: '/' });
+    return res.status(200).json({ message: 'Login successful', access_token: accessToken, username: results[0].username });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Login failed', error: err.message });
