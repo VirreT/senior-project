@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('profileCreation').textContent = `You have been a user since ${createdDate}`;
     } catch (err) {
         console.error(err);
-        window.location.href = '/html/index.html';
-    }
+        alert('Failed to load profile. Please log in again.');
+        localStorage.removeItem('access_token');
+        }
 
     const logOutButton = document.getElementById('logOutButton');
     if (logOutButton) {
         logOutButton.addEventListener('click', async () => {
             try {
-                // Call backend to clear refresh_token cookie
                 await fetch('/api/accounts/logout', { method: 'POST', credentials: 'include' });
                 alert('Log out successful!');
                 localStorage.removeItem('access_token');
