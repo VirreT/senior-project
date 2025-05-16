@@ -166,7 +166,7 @@ main {
     min-height: 40px;
 }
 
-#deleteProfileButton {
+#deleteProfileButton, #logOutButton {
     background-color: #d2856d;
     color: #fff;
     border: 4px solid rgb(210, 109, 109);
@@ -180,7 +180,7 @@ main {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#deleteProfileButton:hover {
+#deleteProfileButton:hover, #logOutButton:hover {
     background-color: #421d1d;
     color: rgb(210, 109, 109);
 }
