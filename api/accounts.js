@@ -11,7 +11,7 @@ function isValidEmail(email) {
     if (!email || !email.includes('@') || email.startsWith('@') || email.endsWith('@')) {
         return false;
     }
-    if (email.indexOf('@') > email.indexOf('.')) {
+    if (email.indexOf('@') > email.lastIndexOf('.')) {
         return false;
     }
     if (!email.includes('.')) {
@@ -62,8 +62,10 @@ function isValidUsername(username) {
 // REGISTER new user
 router.post('/register', async (req, res) => {
     try {
-        const { username, email, emailConfirm, password } = req.body;
-
+        let { username, email, emailConfirm, password } = req.body;
+        username = username.trim().toLowerCase();
+        email = email.trim().toLowerCase();
+        emailConfirm = emailConfirm.trim().toLowerCase();
         // Validate email
         if (email !== emailConfirm) {
             return res.status(400).json({ message: 'Emails do not match' });
@@ -89,8 +91,6 @@ router.post('/register', async (req, res) => {
             [username, hashedPassword, email]
         );
 
-        console.log(`DB result: ${result}`);
-
         return res.status(201).json({ message: 'User registered successfully' });
 
     } catch (err) {
@@ -100,31 +100,52 @@ router.post('/register', async (req, res) => {
 });
 
 // LOGIN user
+const { generateTokens } = require('./token');
+
 router.post('/login', async (req, res) => {
-    try {
-        const { username, password } = req.body;
+  try {
+    let { username, password } = req.body;
+    username = username.trim().toLowerCase();
 
-        const [rows] = await db.execute(
-            'SELECT passwd FROM users WHERE username = ?',
-            [username]
-        );
+    const [results, fields] = await db.execute(
+      'SELECT passwd FROM users WHERE username = ?',
+      [username]
+    );
 
-        if (rows.length === 0) {
-            return res.status(400).json({ message: 'Invalid username or password' });
-        }
-
-        const validPassword = await argon2.verify(rows[0].passwd, password);
-
-        if (!validPassword) {
-            return res.status(400).json({ message: 'Invalid username or password' });
-        }
-
-        return res.status(200).json({ message: 'Login successful' });
-
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ message: 'Login failed', error: err.message });
+    if (results.length === 0) {
+      return res.status(400).json({ message: 'Invalid username or password' });
     }
+
+    const validPassword = await argon2.verify(results[0].passwd.toString(), password);
+
+    if (!validPassword) {
+      return res.status(400).json({ message: 'Invalid username or password' });
+    }
+
+    
+    const { accessToken, refreshToken } = generateTokens({ username });
+
+    
+    res.cookie('refresh_token', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: 'strict',
+      maxAge: 12 * 60 * 60 * 1000, 
+    });
+
+    
+    return res.status(200).json({ message: 'Login successful', accessToken });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Login failed', error: err.message });
+  }
 });
+
+const { autoLogin } = require('./token');
+
+router.get('/auto-login', autoLogin);
+
+
 
 module.exports = router;

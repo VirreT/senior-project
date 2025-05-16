@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 require("dotenv").config();
 
-// Use the correct environment variable names
 const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;
 const JWT_REFRESH_TOKEN = process.env.JWT_REFRESH_TOKEN;
 const JWT_EXPIRATION = process.env.JWT_EXPIRATION;
@@ -33,7 +32,7 @@ const verifyToken = (req, res, next) => {
 };
 
 const generateTokens = (user) => {
-    const accessToken = jwt.sign({ username: user.username, auth: "user" }, JWT_TOKEN_SECRET, { expiresIn:_SECRET `${JWT_EXPIRATION}s` });
+    const accessToken = jwt.sign({ username: user.username, auth: "user" }, JWT_TOKEN_SECRET, { expiresIn:`${JWT_EXPIRATION}s` });
     const refreshToken = jwt.sign({ username: user.username }, JWT_REFRESH_TOKEN, { expiresIn: "12h" });
     return { accessToken, refreshToken };
 };
@@ -71,28 +70,29 @@ async function handleRefreshToken(req, res) {
 }
 
 async function autoLogin(req, res) {
-    const refreshToken = req.cookies?.refresh_token;
-    if (!refreshToken) {
-        return res.status(401).json({ error: "No refresh token provided" });
+  const refreshToken = req.cookies?.refresh_token;
+  if (!refreshToken) {
+    return res.status(401).json({ error: "No refresh token provided" });
+  }
+
+  try {
+    const payload = validateRefreshToken(refreshToken);
+    if (!payload) {
+      return res.status(401).json({ error: "Invalid refresh token" });
     }
 
-    try {
-        const payload = validateRefreshToken(refreshToken);
-        if (!payload) {
-            return res.status(401).json({ error: "Invalid refresh token" });
-        }
+    const newAccessToken = jwt.sign(
+      { username: payload.username },
+      JWT_TOKEN_SECRET,
+      { expiresIn: `${JWT_EXPIRATION}s` }
+    );
 
-        const newAccessToken = jwt.sign(
-            { username: payload.username },
-            JWT_TOKEN_SECRET,
-            { expiresIn:_SECRET `${JWT_EXPIRATION}s` }
-        );
-
-        res.json({ access_token: newAccessToken });
-    } catch (error) {
-        res.status(500).json({ error: "Internal server error" });
-    }
+    res.json({ access_token: newAccessToken });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
 }
+
 
 module.exports = { 
     validateRequest, 
