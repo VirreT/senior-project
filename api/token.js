@@ -24,7 +24,7 @@ const verifyToken = (req, res, next) => {
     }
 
     const token = authHeader.split(" ")[1];
-    jwt.verify(token, JWT_TOKEN_SECRET, (err, decoded_SECRET) => {
+    jwt.verify(token, JWT_TOKEN_SECRET, (err, decoded) => {
         if (err) return res.status(403).json({ error: "Invalid access token" });
         req.user = decoded;
         next();
@@ -64,7 +64,7 @@ async function handleRefreshToken(req, res) {
     const newAccessToken = jwt.sign(
         { username: payload.username },
         JWT_TOKEN_SECRET,
-        { expiresIn:_SECRET `${JWT_EXPIRATION}s` }
+        { expiresIn:`${JWT_EXPIRATION}s` }
     );
     res.json({ access_token: newAccessToken });
 }
@@ -96,7 +96,7 @@ async function autoLogin(req, res) {
 
 module.exports = { 
     validateRequest, 
-    verifyToken, 
+    authenticateToken: verifyToken, 
     generateTokens, 
     refreshToken, 
     validateRefreshToken, 
