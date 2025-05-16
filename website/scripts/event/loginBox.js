@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (response.ok) {
                 alert('Login successful!');
-                window.location.reload();
+                window.location.href = '/html/profile.html';
             } else {
                 alert(data.message || 'Login failed');
             }

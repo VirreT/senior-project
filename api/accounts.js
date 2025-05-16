@@ -135,6 +135,7 @@ router.post('/login', async (req, res) => {
 
     
     return res.status(200).json({ message: 'Login successful', accessToken });
+    window.location.href = '/../html/profile.html';
 
   } catch (err) {
     console.error(err);
