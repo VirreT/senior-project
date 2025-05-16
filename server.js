@@ -6,6 +6,7 @@ const path = require("path");
 const accountRoutes = require("./api/accounts");
 const postRoutes = require("./api/posts");
 const commentRoutes = require("./api/comments");
+const profileRoutes = require("./api/profile");
 
 //express
 const app = express();
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/accounts", accountRoutes);
 //app.use("/api/posts", postRoutes);
 //app.use("/api/comments", commentRoutes);
+app.use("/api", profileRoutes);
 
 
 // server start

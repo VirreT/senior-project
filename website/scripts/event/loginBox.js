@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const data = await response.json();
             if (response.ok) {
+                if (data.access_token) {
+                    localStorage.setItem('access_token', data.access_token);
+                    document.cookie = `access_token=${data.access_token}; path=/;`;
+                }
                 alert('Login successful!');
                 window.location.href = '/html/profile.html';
             } else {
