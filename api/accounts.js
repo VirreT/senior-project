@@ -148,6 +148,12 @@ const { autoLogin } = require('./token');
 
 router.get('/auto-login', autoLogin);
 
+// LOGOUT user (clear refresh_token cookie)
+router.post('/logout', (req, res) => {
+    res.clearCookie('refresh_token', { httpOnly: true, sameSite: 'lax', path: '/' });
+    return res.status(200).json({ message: 'Logged out successfully' });
+});
+
 
 
 module.exports = router;

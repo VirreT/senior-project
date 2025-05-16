@@ -95,6 +95,10 @@ document.getElementById('signupSend').addEventListener('click', async (event) =>
         });
         const data = await response.json();
         if (response.ok) {
+            if (data.access_token) {
+                localStorage.setItem('access_token', data.access_token);
+                document.cookie = `access_token=${data.access_token}; path=/;`;
+            }
             alert('Registration successful!');
             window.location.href = '/html/profile.html';
         } else {
